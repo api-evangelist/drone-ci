@@ -5,7 +5,7 @@ provider: Drone
 providerId: drone-ci
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
 - DevOps
 - CI/CD
@@ -15,10 +15,19 @@ tags:
 - FinOps
 - Cost Management
 - FOCUS
-description: FOCUS-aligned FinOps placeholder for Drone. Pipeline will replace with real billing details.
-notes: Initial scaffold — billing model has not yet been reconciled.
+description: >-
+  FOCUS-aligned FinOps profile for Drone. As an open-source self-hosted CI,
+  Drone has no SaaS invoice; the cost surface is the underlying cloud spend
+  for the Drone server and runner pool. Customers needing commercial support
+  pay Harness via Harness Continuous Integration contracts.
+notes: >-
+  Cost allocation is straightforward — the Drone server VM and runner VMs are
+  ordinary cloud resources tagged in your AWS/Azure/GCP account. Container/
+  registry storage and outbound network are usually a smaller fraction of
+  total spend than runner compute.
 sources:
-- https://www.drone.io/
+- https://github.com/harness/drone
+- https://www.harness.io/products/continuous-integration
 - https://focus.finops.org/focus-specification/v1-3/
 alignedWith:
   framework: FinOps Foundation Framework
@@ -26,41 +35,61 @@ alignedWith:
   dataSpec: FOCUS
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
-publisherName: Drone
-serviceCategory: DevOps
+publisherName: Drone (Harness)
+serviceCategory: DevOps / CI/CD
 billingModel:
-  pricingCategory: To Be Reconciled
-  billingFrequency: Monthly
+  pricingCategory: Self-Hosted (no SaaS billing)
+  billingFrequency: Continuous (cloud-billed)
   billingCurrency: USD
   chargeCategories:
   - Usage
   - Purchase
   - Adjustment
 focusColumns:
-  ServiceName: Drone
+  ServiceName: Drone CI (self-hosted)
   ServiceCategory: DevOps
-  ProviderName: Drone
+  ProviderName: Harness
   PublisherName: Drone
-  InvoiceIssuerName: Drone
+  InvoiceIssuerName: cloud provider
   BillingCurrency: USD
   ChargeCategory: Usage
+  PricingUnit: vm-hour
 meters:
-- name: api_usage
-  description: Catch-all meter pending reconciliation.
-  unit: varies
+- name: server_vm_hours
+  description: Drone server VM hours (cloud-billed).
+  unit: vm-hour
+  aggregation: sum
+  dimensions:
+  - cloud_account
+  - region
+- name: runner_vm_hours
+  description: Drone runner VM hours (cloud-billed).
+  unit: vm-hour
+  aggregation: sum
+  dimensions:
+  - cloud_account
+  - runner_pool
+- name: storage_gb_month
+  description: Database, cache and artifact storage attached to Drone.
+  unit: GB-month
+  aggregation: avg
+  dimensions:
+  - cloud_account
+- name: harness_ci_subscription
+  description: Optional Harness CI subscription for the commercial successor.
+  unit: contract-month
   aggregation: sum
   dimensions:
   - account
-  - resource
 principles:
 - name: Visibility
-  description: Pull provider invoices or usage exports until a self-serve usage feed is documented.
+  description: Tag Drone resources in your cloud account; consume FOCUS cost-export per cloud.
 - name: Allocation
-  description: Tag invoice line items to consuming business units in your FinOps store.
+  description: Allocate runner-pool spend by team via runner labels and resource tags.
 - name: Optimization
-  description: Levers depend on the provider's billing model; review at renewal once reconciled.
+  description: Use spot/preemptible for runner pool; auto-scale to zero off-hours; right-size Drone server.
 - name: Accountability
-  description: Assign a contract owner to review billing against negotiated terms.
+  description: Assign cluster/cloud-account owners; review CI runner spend monthly.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

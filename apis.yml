@@ -3,7 +3,11 @@ url: https://raw.githubusercontent.com/api-evangelist/drone-ci/refs/heads/main/a
 name: Drone
 x-type: company
 description: >-
-  Drone is a container-native open-source continuous delivery platform owned by Harness. Builds defined in YAML executed in Docker containers.
+  Drone is a container-native open-source continuous delivery platform owned by
+  Harness. Pipelines are defined in YAML and executed in Docker containers. The
+  Drone server exposes a REST API used by the Drone CLI, dashboard and SDKs;
+  Drone is now positioned as the open-source upstream of Harness Continuous
+  Integration (Drone Enterprise / Harness CI).
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - DevOps
@@ -11,13 +15,45 @@ tags:
   - Container-Native
   - Open Source
   - YAML
+  - Harness
 created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
-apis: []
+apis:
+  - aid: drone-ci:rest
+    name: Drone Server REST API
+    description: >-
+      Bearer-token authenticated REST API exposed by every Drone server.
+      Endpoints under /api/ for repos, builds, cron, secrets, users, templates,
+      logs and queue status. Default port 8080.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.drone.io/api/
+    baseURL: http://<drone-server>:8080/api
+    tags:
+      - REST
+      - Builds
+      - Repos
+      - Secrets
+      - Cron
+      - Templates
+    properties:
+      - type: Documentation
+        url: https://docs.drone.io/api/
+      - type: APIReference
+        url: https://docs.drone.io/api/overview
+      - type: SDKGo
+        url: https://github.com/drone/go-scm
+      - type: SDKNode
+        url: https://github.com/drone/drone-node
 common:
   - type: Website
     url: https://www.drone.io/
+  - type: Documentation
+    url: https://docs.drone.io/
+  - type: GitHub
+    url: https://github.com/harness/drone
+  - type: Owner
+    url: https://www.harness.io/products/continuous-integration
   - type: Plans
     url: plans/drone-ci-plans-pricing.yml
   - type: RateLimits

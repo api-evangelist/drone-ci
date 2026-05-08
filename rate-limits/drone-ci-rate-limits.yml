@@ -15,21 +15,41 @@ tags:
 - Rate Limiting
 - Quotas
 - Throttling
-description: Placeholder rate-limit artifact for Drone. Replace with real limits once researched.
-notes: Initial scaffold — limits have not yet been reconciled.
+description: >-
+  Drone is self-hosted; the open-source server does not enforce a managed
+  rate quota. Operational limits are configured via DRONE_* environment
+  variables (queue length, concurrent runners, log buffer size) and by the
+  capacity of the host. The upstream Git provider (GitHub/GitLab/Bitbucket/
+  Gitea) imposes its own rate limits on Drone's webhook/SCM client.
+notes: >-
+  No managed-service quota; numeric limits are deployment-specific. Reconciled
+  flagged false; configuration knobs are documented per Drone admin guide.
 sources:
-- https://www.drone.io/
-responseCodes:
-  throttled: 429
+- https://docs.drone.io/server/reference/
+- https://docs.drone.io/runner/overview/
+- https://github.com/harness/drone
+responseCodes: {}
 limits:
-- name: Default
-  scope: account
-  metric: varies
-  limit: see provider documentation
-  notes: Pending reconciliation.
+- name: Concurrent runners
+  scope: server
+  metric: concurrent_jobs
+  limit: see DRONE_RPC_HOST / runner concurrency settings
+  notes: Bounded by registered runners and DRONE_RUNNER_CAPACITY.
+- name: Build log buffer
+  scope: build
+  metric: bytes
+  limit: see DRONE_LOGS_TEXT
+  notes: Configurable build-log retention and streaming buffer.
+- name: SCM provider rate limits
+  scope: scm_account
+  metric: requests
+  limit: per upstream SCM (GitHub 5,000/h authed, etc.)
+  notes: Drone defers to the upstream Git provider's REST/Git rate limits.
 policies:
 - name: Backoff Strategy
-  description: Clients should implement exponential backoff with jitter and honor any Retry-After header.
+  description: Drone's webhook handler retries SCM calls on 429/5xx with backoff.
+- name: Capacity Planning
+  description: Scale runners horizontally; size DRONE_RUNNER_CAPACITY per host.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
