@@ -1,0 +1,29 @@
+aid: drone-ci
+url: https://raw.githubusercontent.com/api-evangelist/drone-ci/refs/heads/main/apis.yml
+name: Drone
+x-type: company
+description: >-
+  Drone is a container-native open-source continuous delivery platform owned by Harness. Builds defined in YAML executed in Docker containers.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - DevOps
+  - CI/CD
+  - Container-Native
+  - Open Source
+  - YAML
+created: '2026-05-08'
+modified: '2026-05-08'
+specificationVersion: '0.19'
+apis: []
+common:
+  - type: Website
+    url: https://www.drone.io/
+  - type: Plans
+    url: plans/drone-ci-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/drone-ci-rate-limits.yml
+  - type: FinOps
+    url: finops/drone-ci-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
