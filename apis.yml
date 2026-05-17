@@ -1,7 +1,7 @@
 aid: drone-ci
 url: https://raw.githubusercontent.com/api-evangelist/drone-ci/refs/heads/main/apis.yml
 name: Drone
-x-type: company
+kind: company
 description: >-
   Drone is a container-native open-source continuous delivery platform owned by
   Harness. Pipelines are defined in YAML and executed in Docker containers. The
