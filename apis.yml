@@ -46,6 +46,8 @@ apis:
       - type: SDKNode
         url: https://github.com/drone/drone-node
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/drone-io
   - type: Website
     url: https://www.drone.io/
   - type: Documentation
