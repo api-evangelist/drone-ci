@@ -8,7 +8,7 @@ description: >-
   Drone server exposes a REST API used by the Drone CLI, dashboard and SDKs;
   Drone is now positioned as the open-source upstream of Harness Continuous
   Integration (Drone Enterprise / Harness CI).
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - DevOps
   - CI/CD
@@ -26,7 +26,7 @@ apis:
       Bearer-token authenticated REST API exposed by every Drone server.
       Endpoints under /api/ for repos, builds, cron, secrets, users, templates,
       logs and queue status. Default port 8080.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.drone.io/api/
     baseURL: http://<drone-server>:8080/api
     tags:
