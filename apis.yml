@@ -46,6 +46,10 @@ apis:
       - type: SDKNode
         url: https://github.com/drone/drone-node
 common:
+  - type: DomainSecurity
+    url: security/drone-ci-domain-security.yml
+  - type: Authentication
+    url: authentication/drone-ci-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/drone-io
   - type: Website
@@ -62,6 +66,8 @@ common:
     url: rate-limits/drone-ci-rate-limits.yml
   - type: FinOps
     url: finops/drone-ci-finops.yml
+  - type: Blog
+    url: https://www.harness.io/blog/rss.xml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
