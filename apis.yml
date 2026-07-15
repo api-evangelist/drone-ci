@@ -46,6 +46,8 @@ apis:
       - type: SDKNode
         url: https://github.com/drone/drone-node
 common:
+  - type: AgenticAccess
+    url: agentic-access/drone-ci-agentic-access.yml
   - type: DomainSecurity
     url: security/drone-ci-domain-security.yml
   - type: Authentication
