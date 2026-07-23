@@ -1,0 +1,171 @@
+openapi: 3.1.0
+info:
+  title: Drone CI REST Builds API
+  version: 1.0.0
+  description: Best-effort OpenAPI for the Drone CI REST API, used to manage repositories, builds, secrets, cron jobs, templates, and the current user. Authentication uses a bearer token retrieved from a user's Drone profile page.
+  contact:
+    name: API Evangelist
+    email: kin@apievangelist.com
+    url: https://docs.drone.io/api/
+servers:
+- url: https://drone.example.com
+  description: A Drone CI server (self-hosted; substitute your host)
+security:
+- bearerAuth: []
+tags:
+- name: Builds
+paths:
+  /api/builds:
+    get:
+      tags:
+      - Builds
+      summary: List recent builds across repositories
+      operationId: listBuilds
+      responses:
+        '200':
+          description: Recent builds
+  /api/repos/{owner}/{repo}/builds:
+    parameters:
+    - $ref: '#/components/parameters/Owner'
+    - $ref: '#/components/parameters/Repo'
+    get:
+      tags:
+      - Builds
+      summary: List builds for a repository
+      operationId: listRepoBuilds
+      responses:
+        '200':
+          description: A page of builds
+    post:
+      tags:
+      - Builds
+      summary: Trigger a new build for a repository
+      operationId: createRepoBuild
+      responses:
+        '201':
+          description: Build created
+  /api/repos/{owner}/{repo}/builds/{build}:
+    parameters:
+    - $ref: '#/components/parameters/Owner'
+    - $ref: '#/components/parameters/Repo'
+    - $ref: '#/components/parameters/Build'
+    get:
+      tags:
+      - Builds
+      summary: Get a single build
+      operationId: getRepoBuild
+      responses:
+        '200':
+          description: A build
+  /api/repos/{owner}/{repo}/builds/{build}/approve:
+    parameters:
+    - $ref: '#/components/parameters/Owner'
+    - $ref: '#/components/parameters/Repo'
+    - $ref: '#/components/parameters/Build'
+    post:
+      tags:
+      - Builds
+      summary: Approve a build awaiting approval
+      operationId: approveBuild
+      responses:
+        '204':
+          description: Approved
+  /api/repos/{owner}/{repo}/builds/{build}/decline:
+    parameters:
+    - $ref: '#/components/parameters/Owner'
+    - $ref: '#/components/parameters/Repo'
+    - $ref: '#/components/parameters/Build'
+    post:
+      tags:
+      - Builds
+      summary: Decline a build awaiting approval
+      operationId: declineBuild
+      responses:
+        '204':
+          description: Declined
+  /api/repos/{owner}/{repo}/builds/{build}/promote:
+    parameters:
+    - $ref: '#/components/parameters/Owner'
+    - $ref: '#/components/parameters/Repo'
+    - $ref: '#/components/parameters/Build'
+    post:
+      tags:
+      - Builds
+      summary: Promote a build to a target environment
+      operationId: promoteBuild
+      responses:
+        '200':
+          description: Promoted
+  /api/repos/{owner}/{repo}/builds/{build}/restart:
+    parameters:
+    - $ref: '#/components/parameters/Owner'
+    - $ref: '#/components/parameters/Repo'
+    - $ref: '#/components/parameters/Build'
+    post:
+      tags:
+      - Builds
+      summary: Restart a previously completed build
+      operationId: restartBuild
+      responses:
+        '200':
+          description: Restarted
+  /api/repos/{owner}/{repo}/builds/{build}/stop:
+    parameters:
+    - $ref: '#/components/parameters/Owner'
+    - $ref: '#/components/parameters/Repo'
+    - $ref: '#/components/parameters/Build'
+    post:
+      tags:
+      - Builds
+      summary: Stop a running build
+      operationId: stopBuild
+      responses:
+        '204':
+          description: Stopped
+  /api/repos/{owner}/{repo}/builds/{build}/logs/{stage}/{step}:
+    parameters:
+    - $ref: '#/components/parameters/Owner'
+    - $ref: '#/components/parameters/Repo'
+    - $ref: '#/components/parameters/Build'
+    - name: stage
+      in: path
+      required: true
+      schema:
+        type: integer
+    - name: step
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      tags:
+      - Builds
+      summary: Stream logs for a step within a build
+      operationId: getBuildLogs
+      responses:
+        '200':
+          description: Log lines
+components:
+  parameters:
+    Build:
+      name: build
+      in: path
+      required: true
+      schema:
+        type: integer
+    Owner:
+      name: owner
+      in: path
+      required: true
+      schema:
+        type: string
+    Repo:
+      name: repo
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

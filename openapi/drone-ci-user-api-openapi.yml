@@ -1,0 +1,31 @@
+openapi: 3.1.0
+info:
+  title: Drone CI REST Builds User API
+  version: 1.0.0
+  description: Best-effort OpenAPI for the Drone CI REST API, used to manage repositories, builds, secrets, cron jobs, templates, and the current user. Authentication uses a bearer token retrieved from a user's Drone profile page.
+  contact:
+    name: API Evangelist
+    email: kin@apievangelist.com
+    url: https://docs.drone.io/api/
+servers:
+- url: https://drone.example.com
+  description: A Drone CI server (self-hosted; substitute your host)
+security:
+- bearerAuth: []
+tags:
+- name: User
+paths:
+  /api/user:
+    get:
+      tags:
+      - User
+      summary: Get the authenticated user
+      operationId: getUser
+      responses:
+        '200':
+          description: Current user
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
