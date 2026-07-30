@@ -8,7 +8,20 @@ description: >-
   Drone server exposes a REST API used by the Drone CLI, dashboard and SDKs;
   Drone is now positioned as the open-source upstream of Harness Continuous
   Integration (Drone Enterprise / Harness CI).
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/drone-ci.png
 tags:
   - DevOps
   - CI/CD
@@ -20,31 +33,80 @@ created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
 apis:
-  - aid: drone-ci:rest
-    name: Drone Server REST API
-    description: >-
-      Bearer-token authenticated REST API exposed by every Drone server.
-      Endpoints under /api/ for repos, builds, cron, secrets, users, templates,
-      logs and queue status. Default port 8080.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.drone.io/api/
-    baseURL: http://<drone-server>:8080/api
-    tags:
-      - REST
-      - Builds
-      - Repos
-      - Secrets
-      - Cron
-      - Templates
-    properties:
-      - type: Documentation
-        url: https://docs.drone.io/api/
-      - type: APIReference
-        url: https://docs.drone.io/api/overview
-      - type: SDKGo
-        url: https://github.com/drone/go-scm
-      - type: SDKNode
-        url: https://github.com/drone/drone-node
+- aid: drone-ci:rest
+  name: Drone Server REST API
+  description: >-
+    Bearer-token authenticated REST API exposed by every Drone server. Endpoints under /api/ for repos,
+    builds, cron, secrets, users, templates, logs and queue status. Default port 8080.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.drone.io/api/
+  baseURL: http://<drone-server>:8080/api
+  tags:
+  - REST
+  - Builds
+  - Repos
+  - Secrets
+  - Cron
+  - Templates
+  properties:
+  - type: Documentation
+    url: https://docs.drone.io/api/
+  - type: APIReference
+    url: https://docs.drone.io/api/overview
+  - type: SDKGo
+    url: https://github.com/drone/go-scm
+  - type: SDKNode
+    url: https://github.com/drone/drone-node
+- aid: drone-ci:drone-ci-builds-api
+  name: Drone Builds API
+  description: The Builds API from Drone — 9 operation(s) for builds.
+  humanURL: https://docs.drone.io/api/
+  baseURL: http://<drone-server>:8080/api
+  tags:
+  - Builds
+  properties:
+  - type: OpenAPI
+    url: openapi/drone-ci-builds-api-openapi.yml
+- aid: drone-ci:drone-ci-cron-api
+  name: Drone Cron API
+  description: The Cron API from Drone — 1 operation(s) for cron.
+  humanURL: https://docs.drone.io/api/
+  baseURL: http://<drone-server>:8080/api
+  tags:
+  - Cron
+  properties:
+  - type: OpenAPI
+    url: openapi/drone-ci-cron-api-openapi.yml
+- aid: drone-ci:drone-ci-secrets-api
+  name: Drone Secrets API
+  description: The Secrets API from Drone — 1 operation(s) for secrets.
+  humanURL: https://docs.drone.io/api/
+  baseURL: http://<drone-server>:8080/api
+  tags:
+  - Secrets
+  properties:
+  - type: OpenAPI
+    url: openapi/drone-ci-secrets-api-openapi.yml
+- aid: drone-ci:drone-ci-templates-api
+  name: Drone Templates API
+  description: The Templates API from Drone — 1 operation(s) for templates.
+  humanURL: https://docs.drone.io/api/
+  baseURL: http://<drone-server>:8080/api
+  tags:
+  - Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/drone-ci-templates-api-openapi.yml
+- aid: drone-ci:drone-ci-user-api
+  name: Drone User API
+  description: The User API from Drone — 1 operation(s) for user.
+  humanURL: https://docs.drone.io/api/
+  baseURL: http://<drone-server>:8080/api
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/drone-ci-user-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/drone-ci-agentic-access.yml
