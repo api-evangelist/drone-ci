@@ -1,0 +1,22 @@
+{
+  "provider": "drone-ci",
+  "sources": [
+    "drone-ci-builds-api-openapi.yml",
+    "drone-ci-cron-api-openapi.yml",
+    "drone-ci-secrets-api-openapi.yml",
+    "drone-ci-templates-api-openapi.yml",
+    "drone-ci-user-api-openapi.yml"
+  ],
+  "outputs": [
+    "drone-ci-builds-api-openapi.yml",
+    "drone-ci-cron-api-openapi.yml",
+    "drone-ci-secrets-api-openapi.yml",
+    "drone-ci-templates-api-openapi.yml",
+    "drone-ci-user-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
