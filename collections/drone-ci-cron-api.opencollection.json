@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Drone CI REST Builds Cron API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cron",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List cron jobs for a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://drone.example.com/api/repos/:owner/:repo/cron",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "repo",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List cron jobs for a repository"
+        },
+        {
+          "info": {
+            "name": "Create a cron job for a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://drone.example.com/api/repos/:owner/:repo/cron",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "repo",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create a cron job for a repository"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

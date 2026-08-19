@@ -1,0 +1,287 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Drone CI REST Builds API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Builds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List recent builds across repositories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://drone.example.com/api/builds"
+          },
+          "docs": "List recent builds across repositories"
+        },
+        {
+          "info": {
+            "name": "List builds for a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://drone.example.com/api/repos/:owner/:repo/builds",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "repo",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List builds for a repository"
+        },
+        {
+          "info": {
+            "name": "Trigger a new build for a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://drone.example.com/api/repos/:owner/:repo/builds",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "repo",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Trigger a new build for a repository"
+        },
+        {
+          "info": {
+            "name": "Get a single build",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://drone.example.com/api/repos/:owner/:repo/builds/:build",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "repo",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "build",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a single build"
+        },
+        {
+          "info": {
+            "name": "Approve a build awaiting approval",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://drone.example.com/api/repos/:owner/:repo/builds/:build/approve",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "repo",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "build",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Approve a build awaiting approval"
+        },
+        {
+          "info": {
+            "name": "Decline a build awaiting approval",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://drone.example.com/api/repos/:owner/:repo/builds/:build/decline",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "repo",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "build",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Decline a build awaiting approval"
+        },
+        {
+          "info": {
+            "name": "Promote a build to a target environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://drone.example.com/api/repos/:owner/:repo/builds/:build/promote",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "repo",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "build",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Promote a build to a target environment"
+        },
+        {
+          "info": {
+            "name": "Restart a previously completed build",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://drone.example.com/api/repos/:owner/:repo/builds/:build/restart",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "repo",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "build",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Restart a previously completed build"
+        },
+        {
+          "info": {
+            "name": "Stop a running build",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://drone.example.com/api/repos/:owner/:repo/builds/:build/stop",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "repo",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "build",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Stop a running build"
+        },
+        {
+          "info": {
+            "name": "Stream logs for a step within a build",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://drone.example.com/api/repos/:owner/:repo/builds/:build/logs/:stage/:step",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "repo",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "build",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "stage",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "step",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Stream logs for a step within a build"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

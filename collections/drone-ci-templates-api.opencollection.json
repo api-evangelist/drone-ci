@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Drone CI REST Builds Templates API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List pipeline templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://drone.example.com/api/templates"
+          },
+          "docs": "List pipeline templates"
+        },
+        {
+          "info": {
+            "name": "Create a pipeline template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://drone.example.com/api/templates"
+          },
+          "docs": "Create a pipeline template"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
