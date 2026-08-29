@@ -8,6 +8,18 @@ description: >-
   Drone server exposes a REST API used by the Drone CLI, dashboard and SDKs;
   Drone is now positioned as the open-source upstream of Harness Continuous
   Integration (Drone Enterprise / Harness CI).
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
